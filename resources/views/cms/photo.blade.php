@@ -19,7 +19,7 @@
 		<!-- Modal -->
    <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
-    
+
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -40,11 +40,11 @@
 		  	<button type="submit" class="btn col-md-offset-5 btn-default">Submit</button>
 		  	<br>
 			</form>
-    
+
         </div>
-        
+
       </div>
-      
+
     </div>
   </div>
   <br>
@@ -52,24 +52,23 @@
 
   	<div class="row row-eq-height">
   	<hr>
-  {{$album->photo}}
 @foreach($album->photo as $photo)
-	
+
              <div class='col-sm-4 col-xs-6 col-md-3 col-lg-3'>
-               
+
                <br>
                <div>
-                        
-                      
-                        <a href="del/{{$photo->id}}" role="button">delete</a>
+
+
+                  <a href="del/{{$photo->id}}" role="button">delete</a>
                         <small class='text-muted col-md-offset-7'>{{$photo->photo}}</small>
                 <a class="thumbnail fancybox" rel="ligthbox" href="{{URL::to('/') }}/albuns/{{$photo->album_id}}/{{$photo->image}}">
                       <div style="background-image: url({{ URL::to('/') }}/albuns/{{$photo->album_id}}/{{$photo->image}});">
-                    <img class="img-responsive" alt="" src="{{ URL::to('/') }}/fundo.png" />
+                    <img class="img-responsive" alt="" src="{{'/albuns/' . $album->id .'/'. $photo->image}}" />
 					</div>  </a>
-                    
+
                     </div> <!-- text-right / end -->
-                	
+
   	</div>
 
 @endforeach
