@@ -2,8 +2,7 @@
 
 select * from life where days= happy;
 
-I've been worked in this project in latest three days cause I wanted to learn and apply my knowleage in laravel, it's a CMS for a blog that u can create, edit and delete. I hope u like it, if u want to make changes just do it haha. 
-I made it with Laravel
+I'm woking in this project in latest three days cause I wanted to learn more and apply my knowleage in laravel, it's a CMS for a blog that u can create, edit and delete. I hope u like it, if u want to make changes just do it haha. 
 
 ## About the project
 
