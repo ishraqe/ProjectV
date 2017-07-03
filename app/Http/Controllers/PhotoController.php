@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Albuns;
-use App\Photos;
+use App\Album;
+use App\Photo;
 use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -37,9 +37,9 @@ class PhotoController extends Controller {
 
 		$files = $request->file('image');
 
-		$album = Albuns::find($id);
+		$album = Album::find($id);
 
-		$path = public_path() . '/albuns/' . $album->id;
+		$path = public_path() . '/album/' . $album->id;
 
 		$items = new Collection();
 
@@ -49,7 +49,7 @@ class PhotoController extends Controller {
 				$filename = str_random(12) . ".{$extension}";
 				$upload_success = $file->move($path, $filename);
 
-				$image = new Photos;
+				$image = new Photo;
 				$image->image = $filename;
 				$image->title = $request->title;
 
@@ -61,7 +61,7 @@ class PhotoController extends Controller {
 
 		}
 		if($save){
-		\Session::flash('save_message','Photos add with sucess');
+		\Session::flash('save_message','Photo add with sucess');
 			return back();
 		}
 	}
@@ -73,7 +73,7 @@ class PhotoController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show($id) {
-		$album = Albuns::with('photo')->find($id);
+		$album = Album::with('photo')->find($id);
 
 		return view('cms.photo', compact('album'));
 	}
@@ -108,13 +108,13 @@ class PhotoController extends Controller {
 	public function destroy($id) {
 		//
 		$photo = $id;
-		$album = Photos::find($id)->album_id;
-		$id = Photos::find($photo)->id;
-		$image = Photos::find($photo)->image;
-		$path = public_path().'/albuns/' .$album.'/'.$image;
+		$album = Photo::find($id)->album_id;
+		$id = Photo::find($photo)->id;
+		$image = Photo::find($photo)->image;
+		$path = public_path().'/album/' .$album.'/'.$image;
 		
 		File::delete($path);
-		$delete = Photos::find($id)->delete();
+		$delete = Photo::find($id)->delete();
 		if($delete){
 		\Session::flash('delete_message','Photo deleted');
 		}

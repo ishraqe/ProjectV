@@ -3,17 +3,17 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Posts;
-class Categories extends Model
+use App\Post;
+class Category extends Model
 {
     //
 	protected $fillable = ['category'];
 	
 	public static function recent(){
-		return Categories::latest()->get();
+		return Category::latest()->get();
 
 	}
-	public function posts(){
-		return $this->hasMany(Posts::class);
+	public function post(){
+		return $this->hasMany(Post::class);
 	}
 }

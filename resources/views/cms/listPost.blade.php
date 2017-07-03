@@ -17,7 +17,7 @@
 	<h2>{{$post->title}}</h2>
 	<p>{{$post->created_at->toFormattedDateString()}}</p>
 	{!!$post->body!!}
-	<a href="/cms/posts/edit/{{$post->id}}" class="btn btn-default" role="button">Edit</a>
-				 <a href="/cms/posts/del/{{$post->id}}"  class="btn btn-default col-md-offset-1" role="button">Delete</a>
+	<a href="/cms/post/edit/{{$post->id}}" class="btn btn-default" role="button">Edit</a>
+				 <a href="/cms/post/del/{{$post->id}}"  class="btn btn-default col-md-offset-1" role="button">Delete</a>
 </div>
 @endsection

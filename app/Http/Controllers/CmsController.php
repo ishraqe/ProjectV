@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Albuns;
-use App\Posts;
+use App\Album;
+use App\Post;
 
 class CmsController extends Controller
 {
@@ -15,8 +15,8 @@ class CmsController extends Controller
      */
     public function index()
     {
-        $album = Albuns::recent();
-		$post = Posts::recent();
+        $album = Album::recent();
+		$post = Post::recent();
 		
 		return view('cms.index', compact('album', 'post'));
     }

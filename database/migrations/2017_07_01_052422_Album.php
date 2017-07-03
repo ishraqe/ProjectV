@@ -14,7 +14,7 @@ class Album extends Migration
     public function up()
     {
         //
-		Schema::create('albuns', function (Blueprint $table) {
+		Schema::create('albums', function (Blueprint $table) {
             $table->increments('id');
 			$table->string('cover');
             $table->string('title');
@@ -31,6 +31,6 @@ class Album extends Migration
     public function down()
     {
         //
-		 Schema::drop('albuns');
+		 Schema::drop('albums');
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Albuns;
+use App\Album;
 use File;
 
 class AlbumController extends Controller
@@ -15,7 +15,7 @@ class AlbumController extends Controller
      */
     public function index()
     {
-        $album = Albuns::recent();
+        $album = Album::recent();
 		return view('cms.album', compact('album'));
     }
 
@@ -37,10 +37,10 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
-        $album = Albuns::create(['title' => $request->title, 'body'=>$request->body, 'cover'=>'oi']);
-		$album = Albuns::all()->last();
-		$filename = Albuns::cover($request->file('image'));
-		$save=Albuns::where('id', $album->id)->update(array('cover' => $filename));
+        $album = Album::create(['title' => $request->title, 'body'=>$request->body, 'cover'=>'oi']);
+		$album = Album::all()->last();
+		$filename = Album::cover($request->file('image'));
+		$save=Album::where('id', $album->id)->update(array('cover' => $filename));
 		if($save){
 		\Session::flash('save_message','Album created with sucess');
 		}
@@ -90,10 +90,10 @@ class AlbumController extends Controller
     public function destroy($id)
     {
         //
-		$id = Albuns::find($id)->id;
-		$path = public_path().'/albuns/' . $id;
+		$id = Album::find($id)->id;
+		$path = public_path().'/album/' . $id;
 		$success = File::deleteDirectory($path);
-		if(Albuns::find($id)->delete()){
+		if(Album::find($id)->delete()){
 		\Session::flash('delete_message','successfully deleted.');
 		}
 		return redirect('/cms/album');

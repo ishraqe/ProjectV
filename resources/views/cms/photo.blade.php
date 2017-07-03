@@ -8,7 +8,7 @@
        @section('content')
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <div class="row">
- 	<div style="height: 300px; background-image: url({{ URL::to('/') }}/albuns/{{$album->id}}/thumb/{{$album->cover}});background-position: center center;background-size: cover; background-repeat: no-repeat;
+ 	<div style="height: 300px; background-image: url({{ URL::to('/') }}/album/{{$album->id}}/thumb/{{$album->cover}});background-position: center center;background-size: cover; background-repeat: no-repeat;
     background-attachment: fixed;">
 				<img class="img-responsive" height="320" src="{{ URL::to('/') }}/fundo.png" alt="...">
 				  </div>
@@ -63,8 +63,8 @@
               
                         <a href="del/{{$photo->id}}" role="button">Delete</a>
                         <small class='text-muted col-md-offset-7'>{{$photo->description}}</small>
-                <a class="thumbnail fancybox" rel="ligthbox" href="{{URL::to('/') }}/albuns/{{$photo->albuns_id}}/{{$photo->image}}">
-                      <div style="background-image: url({{ URL::to('/') }}/albuns/{{$photo->albuns_id}}/{{$photo->image}}); background-position: center center;background-size: cover; background-repeat: no-repeat;">
+                <a class="thumbnail fancybox" rel="ligthbox" href="{{URL::to('/') }}/album/{{$photo->album_id}}/{{$photo->image}}">
+                      <div style="background-image: url({{ URL::to('/') }}/album/{{$photo->album_id}}/{{$photo->image}}); background-position: center center;background-size: cover; background-repeat: no-repeat;">
                     <img class="img-responsive" alt="" src="{{ URL::to('/') }}/fundo.png" />
 					</div>  </a>
                     

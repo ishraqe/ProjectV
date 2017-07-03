@@ -13,11 +13,11 @@ class Photo extends Migration {
 	public function up() {
 		Schema::create('photos', function (Blueprint $table) {
 			$table->increments('id');
-			$table->integer('albuns_id')->unsigned();
+			$table->integer('album_id')->unsigned();
 			$table->string('image');
 			$table->string('title');
 			$table->timestamps();
-			$table->foreign('albuns_id')->references('id')->on('albuns')->onDelete('cascade');
+			$table->foreign('album_id')->references('id')->on('albums')->onDelete('cascade');
 
 		});
 

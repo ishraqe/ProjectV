@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Posts;
-use App\Categories;
+use App\Post;
+use App\Category;
 use File;
 
 class PostController extends Controller
@@ -16,8 +16,8 @@ class PostController extends Controller
      */
     public function index()
     {
-       	$post = Posts::recent();
-		$category = Categories::recent();
+       	$post = Post::recent();
+		$category = Category::recent();
 		return view('cms.post', compact('post', 'category'));
     }
 
@@ -40,22 +40,22 @@ class PostController extends Controller
     public function store(Request $request)
     {	
 		
-		$post = new Posts;
+		$post = new Post;
 		$post->title = $request->title;
 
 		$post->cover = $post->cover($request->file('image'));
 		$post->body = $request->body;
-		$category = Categories::find($request->category);
-		$save=$category->posts()->save($post);
+		$category = Category::find($request->category);
+		$save=$category->post()->save($post);
 		if($save){
 		\Session::flash('save_message','Post created with sucess');
 			return redirect('/cms/post');
 		}
 				
 		
-//		Posts::cover($request->file('image'));
+//		Post::cover($request->file('image'));
 //		if(!$file)return back()->withErrors(['message' => 'Ops, something went wrong']);
-//		$save =Posts::create([
+//		$save =Post::create([
 //			'category_id' =>request('category'),
 //			'title' => request('title'),
 //			'body' => request('body'),
@@ -77,7 +77,7 @@ class PostController extends Controller
     public function show($id)
     {
         //
-		$post = Posts::find($id);
+		$post = Post::find($id);
 		
 		return view('cms.listPost', compact('post'));
     }
@@ -91,8 +91,8 @@ class PostController extends Controller
     public function edit($id)
     {
         //
-		$post = Posts::find($id);
-		$category = Categories::recent();
+		$post = Post::find($id);
+		$category = Category::recent();
 		return view('cms.editPost', compact('post', 'category'));
     }
 
@@ -117,11 +117,11 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
-		$post = Posts::find($id);
+		$post = Post::find($id);
 		$image = $post->image;
 		$path = public_path().'/albuns/post/'.$image;
 		File::delete($path);
-		$delete = Posts::find($id)->delete();
+		$delete = Post::find($id)->delete();
 		if($delete){
 		\Session::flash('delete_message','Post deleted');
 		}

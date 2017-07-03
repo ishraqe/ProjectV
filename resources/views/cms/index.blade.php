@@ -18,7 +18,7 @@
             @foreach($album->slice(0,4) as $album)
             <div class="col-xs-6 col-sm-3 placeholder">
              <a href="/cms/photo/{{$album->id}}">
-             <div class="img-thumbnail"  style="background-image: url({{ URL::to('/') }}/albuns/{{$album->id}}/thumb/{{$album->cover}});background-position: center center;
+             <div class="img-thumbnail"  style="background-image: url({{ URL::to('/') }}/album/{{$album->id}}/thumb/{{$album->cover}});background-position: center center;
   			background-size: cover;">
               <img src="{{ URL::to('/') }}/fundo.png" width="200" height="200" class="img-responsive">
               </div>

@@ -4,28 +4,28 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use File;
-class Albuns extends Model
+class Album extends Model
 {
     //
 	protected $fillable = ['title', 'image', 'body'];
 	
 	public static function recent(){
-		return Albuns::latest()->get();
+		return Album::latest()->get();
 		
 	}
 	public function photo(){
-		return $this->hasMany(Photos::class);
+		return $this->hasMany(Photo::class);
 	}
 	
 	
 	public static function cover($file){
 		//here I get the last data
-		$album = Albuns::all()->last();
+		$album = Album::all()->last();
 		//here I create the folder
-		$path = public_path().'/albuns/' . $album->id;
+		$path = public_path().'/album/' . $album->id;
 		File::makeDirectory($path, $mode = 0777, true, true);
 		//here I create the thumb
-		$thumb = public_path().'/albuns/' .$album->id.'/thumb';
+		$thumb = public_path().'/album/' .$album->id.'/thumb';
 		File::makeDirectory($path, $mode = 0777, true, true);
 		
 		$extension = $file->getClientOriginalExtension();

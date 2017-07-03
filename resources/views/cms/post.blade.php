@@ -16,7 +16,7 @@
         <p>It's empty</p>
          @else
          @foreach($post as $post)
-         <a href="/cms/posts/list/{{$post->id}}">
+         <a href="/cms/post/list/{{$post->id}}">
 			<div class="col-sm-5 col-md-3 ">
 			  <div class="thumbnail">
 				<div style="background-image: url({{ URL::to('/') }}/albuns/post/{{$post->cover}});background-position: center center;background-size: cover;">
@@ -26,8 +26,8 @@
 					<h5>{{$post->title}}</h5></a>
 				<p>{{$post->created_at->toFormattedDateString()}}</p>
 				
-				<a href="/cms/posts/edit/{{$post->id}}" class="btn btn-default" role="button">Edit</a>
-				 <a href="/cms/posts/del/{{$post->id}}"  class="btn btn-default col-md-offset-1" role="button">Delete</a>
+				<a href="/cms/post/edit/{{$post->id}}" class="btn btn-default" role="button">Edit</a>
+				 <a href="/cms/post/del/{{$post->id}}"  class="btn btn-default col-md-offset-1" role="button">Delete</a>
 				
 			  </div>
 		  </div>
