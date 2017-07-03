@@ -40,19 +40,33 @@ class PostController extends Controller
     public function store(Request $request)
     {	
 		
-		$file = Posts::cover($request->file('image'));
-		if(!$file)return back()->withErrors(['message' => 'Ops, something went wrong']);
-		$save =Posts::create([
-			'category_id' =>request('category'),
-			'title' => request('title'),
-			'body' => request('body'),
-			'cover' => $file]
-					 );
+		$post = new Posts;
+		$post->title = $request->title;
+
+		$post->cover = $post->cover($request->file('image'));
+		$post->body = $request->body;
+		$category = Categories::find($request->category);
+		$save=$category->posts()->save($post);
 		if($save){
 		\Session::flash('save_message','Post created with sucess');
 			return redirect('/cms/post');
 		}
-    }
+				
+		
+//		Posts::cover($request->file('image'));
+//		if(!$file)return back()->withErrors(['message' => 'Ops, something went wrong']);
+//		$save =Posts::create([
+//			'category_id' =>request('category'),
+//			'title' => request('title'),
+//			'body' => request('body'),
+//			'cover' => $file]
+//					 );
+//		if($save){
+//		\Session::flash('save_message','Post created with sucess');
+//			return redirect('/cms/post');
+//		}
+//    }
+	}
 
     /**
      * Display the specified resource.

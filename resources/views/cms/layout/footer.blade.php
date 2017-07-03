@@ -6,5 +6,7 @@
       <script>
             CKEDITOR.replace( 'body' );
         </script>
+
+    <script src="/js/jquery.js"></script>
   </body>
 </html>

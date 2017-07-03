@@ -18,7 +18,7 @@
  
        @else
              @foreach($album as $album)
-			  <a href="photo/{{$album->id}}">
+			  <a href="/cms/photo/{{$album->id}}">
 				<div class="col-sm-6 col-md-4 ">
 				  <div class="thumbnail">
 			<div style="background-image: url({{ URL::to('/') }}/albuns/{{$album->id}}/thumb/{{$album->cover}}); 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Albuns;
 use App\Photos;
+use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
@@ -56,10 +57,13 @@ class PhotoController extends Controller {
 
 			}
 
-			$album->photo()->saveMany($items);
+			$save=$album->photo()->saveMany($items);
 
 		}
-		return redirect('/photo/' . $album->id);
+		if($save){
+		\Session::flash('save_message','Photos add with sucess');
+			return back();
+		}
 	}
 
 	/**
@@ -103,5 +107,17 @@ class PhotoController extends Controller {
 	 */
 	public function destroy($id) {
 		//
+		$photo = $id;
+		$album = Photos::find($id)->album_id;
+		$id = Photos::find($photo)->id;
+		$image = Photos::find($photo)->image;
+		$path = public_path().'/albuns/' .$album.'/'.$image;
+		
+		File::delete($path);
+		$delete = Photos::find($id)->delete();
+		if($delete){
+		\Session::flash('delete_message','Photo deleted');
+		}
+		return back();
 	}
 }

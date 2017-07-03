@@ -1,9 +1,9 @@
 ﻿@extends('cms.layout.master')
-     @section('dash')
+     @section('album')
      class="active"
      @endsection
       @section('title')
-      	Home
+      	Album
       @endsection
        @section('content')
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -53,23 +53,25 @@
   	<div class="row row-eq-height">
   	<hr>
 @foreach($album->photo as $photo)
-
+	
+           
              <div class='col-sm-4 col-xs-6 col-md-3 col-lg-3'>
-
+               
                <br>
                <div>
-
-
-                  <a href="del/{{$photo->id}}" role="button">delete</a>
-                        <small class='text-muted col-md-offset-7'>{{$photo->photo}}</small>
-                <a class="thumbnail fancybox" rel="ligthbox" href="{{URL::to('/') }}/albuns/{{$photo->album_id}}/{{$photo->image}}">
-                      <div style="background-image: url({{ URL::to('/') }}/albuns/{{$photo->album_id}}/{{$photo->image}});">
-                    <img class="img-responsive" alt="" src="{{'/albuns/' . $album->id .'/'. $photo->image}}" />
+                      
+              
+                        <a href="del/{{$photo->id}}" role="button">Delete</a>
+                        <small class='text-muted col-md-offset-7'>{{$photo->description}}</small>
+                <a class="thumbnail fancybox" rel="ligthbox" href="{{URL::to('/') }}/albuns/{{$photo->albuns_id}}/{{$photo->image}}">
+                      <div style="background-image: url({{ URL::to('/') }}/albuns/{{$photo->albuns_id}}/{{$photo->image}}); background-position: center center;background-size: cover; background-repeat: no-repeat;">
+                    <img class="img-responsive" alt="" src="{{ URL::to('/') }}/fundo.png" />
 					</div>  </a>
-
+                    
                     </div> <!-- text-right / end -->
+                	
+		</div>   	
 
-  	</div>
 
 @endforeach
 
